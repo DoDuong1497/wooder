@@ -1,0 +1,64 @@
+.info{
+    --pd-section: 18rem;
+    padding: var(--pd-section);
+    background-image: url(../img/thumb-video-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    &-content{
+        .heading{
+            max-width: 42.8rem;
+        }
+
+        .desc{
+            max-width: 55.9rem;
+        }
+
+        .btn{
+            display: flex;
+            align-items: center;
+            width: max-content;
+            i{
+                padding-left: 0;
+                width: auto;
+                padding-right: 12px;
+                line-height: 0;
+            }
+
+            .video-src{
+                display: inline-block;
+            }
+        }
+    }
+}
+
+@include lg{
+    .info{
+        --pd-section: 10rem;
+    }
+
+}
+
+@include sm{
+    .info{
+        --pd-section: 8rem;
+        &-content{
+            .desc{
+                margin-bottom: 2rem;
+            }
+        }
+    
+    }
+}
+
+@include xs{
+    .info{
+        &-content{
+            .heading,
+            .desc{
+                max-width: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,187 @@
+header{
+    @include size(100%, var(--height-header));
+    background: $gradient-cl;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    &.active{
+        background-color: $bg-black;
+    }
+
+    .container-fluid{
+        height: 100%;
+        @include flexjustify;
+        position: relative;
+    }
+
+    .menu{
+        @include mid(false);
+
+        &-list{
+            display: flex;
+
+            li{
+                --pd-li: 0 3.5rem;
+                padding: var(--pd-li);
+                a{
+                    @include text(1.5rem, $pb, normal, $white-cl, uppercase);
+                    opacity: .5;
+                    @include transition($t);
+                    &.active,
+                    &:hover{
+                        opacity: 1;
+                        color: $yellow-cl;
+                    }
+                }
+            }
+        }
+    }
+
+    .lang{
+        position: relative;
+        &-current{
+            display: flex;
+            align-items: center;
+            @include text(1.5rem, $pb, normal, $white-cl, uppercase);
+            opacity: .5;
+            cursor: pointer;
+            i{
+                display: inline-block;
+                line-height: 0;
+                padding-left: 4px;
+            }
+        }
+
+        &-option{
+            display: none;
+            @include text(1.5rem, $pb, normal, $white-cl, uppercase);
+            position: absolute;
+            top: 200%;
+            right: 0;
+            border-radius: 5px;
+            &.open{
+                display: block;
+            }
+
+            &__item{
+                border-bottom: 1px solid $gray-cl;
+                padding: 1.5rem 3rem;
+                background-color: $bg-black;
+                cursor: pointer;
+
+                &:last-child{
+                    border-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .btn-nav{
+        display: none;
+    }
+}
+
+.menu-list{
+    li{
+        --pd-li: 0 3.5rem;
+        padding: var(--pd-li);
+        a{
+            @include text(1.5rem, $pb, normal, $white-cl, uppercase);
+            opacity: .5;
+            @include transition($t);
+            &.active,
+            &:hover{
+                opacity: 1;
+                color: $yellow-cl;
+            }
+        }
+    }
+}
+
+.header-progress{
+    width: 0;
+    height: 3px;
+    background-color: $yellow-cl;
+    @include transition($t);
+}
+
+@include md{
+    header{
+        .menu{
+            &-list{
+                li{
+                    --pd-li: 0 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+@include sm{
+    header{
+        .menu{
+            display: none;
+        }
+
+        .right{
+            display: flex;
+            align-items: center;
+        }
+
+        .lang{
+            margin-right: 15px;
+        }
+
+        .btn-nav{
+            display: block;
+            @include size(30px, 30px);
+            position: relative;
+            z-index: 3;
+            
+            &::before,
+            &::after,
+            span{
+                display: inline-block;
+                @include size(100%, 3px);
+                background-color: $yellow-cl;
+                position: absolute;
+            }
+
+            &::before{
+                content: "";
+                top: 0;
+                @include transition($t);
+            }
+
+            span{
+                top: 50%;
+                @include transform(translateY(-50%));
+                @include transition($t);
+            }
+
+            &::after{
+                content: "";
+                bottom: 0;
+                @include transition($t);
+            }
+
+            &.open{
+                &::before{
+                    @include transform(rotate(45deg) translate(11px, 8px))
+                }
+
+                span{
+                    display: none;
+                }
+
+                &::after{
+                    @include transform(rotate(-45deg) translate(11px, -8px))
+                }
+            }
+        }
+    }
+}
+
+

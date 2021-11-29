@@ -1,0 +1,123 @@
+.news{
+    &-content{
+        max-width: 44rem;
+        margin-bottom: 5rem;
+        .desc{
+            margin-bottom: 0;
+        }
+    }
+    .tags-link{
+        color: $black-cl;
+        background-color: #cccccc;
+        padding: 16px 65px;
+        margin-right: 15px;
+        margin-bottom: 5rem;
+        text-align: center;
+        display: inline-block;
+
+        &.active{
+            background-color: $yellow-cl;
+        }
+
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+
+    &-category{
+        display: none;
+
+        &.active{
+            display: block;
+        }
+    }
+
+    &-list{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr;
+        column-gap: 25px;
+    }
+
+    &-item{
+        cursor: pointer;
+        &__thumbnail{
+            width: 100%;
+            height: 0;
+            padding-bottom: 69%;
+            overflow: hidden;
+            position: relative;
+            img{
+                max-width: 100%;
+                min-width: 100%;
+                min-height: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                @include transition($t);
+                @include transform(translate(-50%, -50%) scale(1));
+            }
+        }
+
+        &__text{
+            margin-top: 2.4rem;
+            padding: 2.4rem 0;
+            position: relative;
+            .heading{
+                min-height: 4rem;
+                @include overtext(2);
+                margin-bottom: 1rem;
+                a{
+                    color: $black-cl;
+                    @include transition($t);
+                    &:hover{
+                        color: $yellow-cl;
+                    }
+                }
+            }
+
+            .desc{
+                margin-bottom: 0;
+                @include overtext(3);
+            }
+
+            &::before{
+                content: "";
+                display: inline-block;
+                @include size(83px, 3px);
+                background-color: $yellow-cl;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+
+        &:hover{
+            img{
+                @include transition($t);
+                @include transform(translate(-50%, -50%) scale(1.2));
+            }
+        }
+    }
+}
+
+@include xs{
+    .news{
+        .tags-link{
+            width: calc(50% - 10px);
+        }
+
+        &-list{
+            grid-template-columns: 1fr;
+        }
+
+        &-item{
+            margin-bottom: 2rem;
+
+            &:last-child{
+                margin-bottom: 0;
+            }
+        }
+    }
+}

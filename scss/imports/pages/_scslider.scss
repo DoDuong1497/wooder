@@ -1,0 +1,222 @@
+.slider{
+    --pd-section: 0;
+    position: relative;
+    .main-carousel{
+        @include size(100%, 100vh);
+    }
+
+    .carousel-cell{
+        @include size(100%);
+        // position: relative;
+        overflow: hidden;
+
+        // &.active{
+        //     display: block;
+        // }
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        
+
+        &__content{
+            @include mid(false);
+            text-align: center;
+            .heading{
+                --mr-bt: 4rem;
+                --heading-fs: 8.4rem;
+                --heading-lt: 0.2em;
+                font-size: var(--heading-fs);
+                line-height: 1;
+                letter-spacing: var(--heading-lt);
+                margin-bottom: var(--mr-bt);
+            }
+
+            .btn{
+                i{
+                    @include transition($t);
+                }
+
+                &.--outline{
+                    &:hover{
+                        i{
+                            width: 4.5rem;
+                            padding-left: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-bottom{
+        width: 100%;
+        position: absolute;
+        bottom: 3rem;
+        .container-fluid{
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .paging{
+            display: flex;
+            align-items: center;
+
+            &::before{
+                content: "";
+                display: inline-block;
+                @include size(42px, 3px);
+                background-color: $yellow-cl;
+                margin-right: 1.5rem;
+            }
+
+            &-number{
+                margin-right: 1.5rem;
+                @include text(4.2rem, $pb, normal, $yellow-cl, none);
+            }
+
+            &-dots{
+                &__item{
+                    --mr-dot: 1.3rem;
+                    display: inline-block;
+                    @include size(1rem);
+                    background-color: #303030;
+                    @include br(50%);
+                    cursor: pointer;
+                    margin-right: var(--mr-dot);
+                    
+                    &.active{
+                        background-color: $yellow-cl;
+                    }
+                    
+                    &:hover{
+                        background-color: $yellow-cl;
+                    }
+                }
+            }
+        }
+
+        .mouse{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            position: absolute;
+            left: 50%;
+            @include transform(translateX(-50%));
+
+            &-line{
+                img{
+                    display: inline-block;
+                    will-change: transform;
+                    @include transform(translateY(0));
+                    @include animation(eventMouseBottom .5s linear infinite alternate);
+
+                    @include keyframes(eventMouseBottom){
+                        from{
+                            transform: translateY(0);
+                        }
+                        to{
+                            transform: translateY(18px);
+                        }
+                    }
+                }
+            }
+        }
+
+        .control{
+            display: flex;
+            .btn{
+                &.--outline{
+                    --pd-btn: 10px 17px;
+                }
+
+                &:first-child{
+                    margin-right: -1px;
+                }
+            }
+        }
+    }
+}
+
+@include md{
+    .slider{
+        &-item{
+            &__content{
+                .heading{
+                    --heading-lt: 0.1em;
+                }
+            }
+        }
+    }
+}
+
+@include sm{
+    .slider{
+        &-item{
+            &__content{
+                .heading{
+                    --mr-bt: 2rem;
+                    --heading-fs: 7rem;
+                    --heading-lt: 0.02em;
+                }
+            }
+        }
+
+        &-bottom{
+            .control{
+                .btn{
+                    &.--outline{
+                        --pd-btn: 9px 14px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include xs{
+    .slider{
+        &-wrap{
+            height: 45rem;
+        }
+
+        &-bottom{
+            .paging{
+                &-number{
+                    line-height: 3rem;
+                }
+
+                &::before{
+                    display: none;
+                }
+
+                &-dots{
+                    display: none;
+                }
+            }
+
+            .mouse{
+                &-icon{
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@include xxs{
+    .slider{
+        &-item{
+            &__content{
+                .heading{
+                    --heading-fs: 5.5rem;
+                }
+            }
+        }
+    }
+}

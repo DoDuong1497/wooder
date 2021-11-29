@@ -1,0 +1,46 @@
+.menu-mobile{
+    opacity: 0;
+    pointer-events: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: $black-cl;
+    z-index: 2;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    @include transform(translateX(-100%));
+    @include transition($t);
+}
+
+@include sm{
+    .menu-mobile{
+        &.open{
+            opacity: 1;
+            pointer-events: auto;
+            
+            @include transform(translateX(0));
+            .menu-list{
+                height: 100%;
+                flex-direction: column;
+                @include mid(true);
+                li{
+                    padding: 1.5rem 0;
+
+                    a{
+                        opacity: 1;
+                    }
+
+                    &:first-child{
+                        padding-top: 0;
+                    }
+
+                    &:last-child{
+                        padding-bottom: 0;
+                    }
+                }
+            }
+        }
+
+    }
+}

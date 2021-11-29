@@ -1,0 +1,49 @@
+.about{
+    .container{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    &-img,
+    &-content{
+        max-width: 50%;
+    }
+
+    &-content{
+        --mr-left: -4rem;
+        margin-left: var(--mr-left);
+    }
+}
+
+@include sm{
+    .about{
+        .container{
+            justify-content: space-between;
+        }
+
+        &-img,
+        &-content{
+            max-width: 47.5%;
+        }
+
+        &-content{
+            --mr-left: 0;
+        }
+    }
+}
+
+
+@include xs{
+    .about{
+
+        &-img,
+        &-content{
+            max-width: 100%;
+        }
+
+        &-content{
+            padding-top: 2rem;
+        }
+    }
+}

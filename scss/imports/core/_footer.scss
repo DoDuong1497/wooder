@@ -1,0 +1,40 @@
+footer{
+    padding: 20px 0;
+    background-color: $black-cl;
+    position: relative;
+    .container{
+        @include flexjustify;
+
+        .copyright,
+        .back-to-top a{
+            color: $white-cl;
+            font-size: 1.2rem;
+        }
+
+        .logo{
+            @include mid(false);
+        }
+
+        .back-to-top{
+            a{
+                text-transform: uppercase;
+                @include transition($t);
+                &:hover{
+                    color: $yellow-cl;
+                }
+            }
+        }
+    }
+}
+
+@include xs{
+    footer{
+        .container{
+            flex-direction: column;
+
+            .copyright{
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
